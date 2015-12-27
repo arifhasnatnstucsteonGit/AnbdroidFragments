@@ -12,8 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import Fragment.Fragment1;
+import Fragment.Fragment2;
+import interfaces.Communicator;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Communicator{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +24,25 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FragmentManager fragmentManager=getFragmentManager();
+    /*    FragmentManager fragmentManager=getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
 
         Fragment1 fragment1 =new Fragment1();
         fragmentTransaction.add(R.id.main_layout,fragment1,"fragment one");
-        fragmentTransaction.commit();
+        fragmentTransaction.commit(
+*/
+
 
 
 
     }
 
 
+    @Override
+    public void respond(String data) {
+        FragmentManager fragmentManager=getFragmentManager();
+        Fragment2 fragment2= (Fragment2) fragmentManager.findFragmentById(R.id.fragment2);
+        fragment2.changeText(data);
+
+    }
 }
